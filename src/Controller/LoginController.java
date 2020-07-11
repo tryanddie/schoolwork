@@ -92,6 +92,7 @@ public class LoginController extends Application implements Initializable {
             e.printStackTrace();
         }
 
+            ct=null;
     }
 
     @FXML

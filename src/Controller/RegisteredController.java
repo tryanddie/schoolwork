@@ -67,7 +67,7 @@ public class RegisteredController extends Application implements Initializable {
 
         try {
             Statement state = ct.createStatement();
-            if(state.executeQuery("select * from information where account="+account.getText()).next())
+            if(state.executeQuery("select * from information where account= '"+account.getText()+"'").next())
             {
                 String info = "账号已存在";
                 Alert alert = new Alert(Alert.AlertType.INFORMATION, info, new ButtonType("确定", ButtonBar.ButtonData.YES));
