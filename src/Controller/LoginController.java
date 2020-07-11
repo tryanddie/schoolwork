@@ -22,18 +22,10 @@ public class LoginController extends Application implements Initializable {
 
     public static Connection ct = null;
     static String url="jdbc:sqlserver://127.0.0.1:1433;databaseName=library";
-    static String user="test";
-    static String passerword = "12345";
-    public static Connection connect(){
+    public static Connection connect(String user,String passerword){
         try{
             return DriverManager.getConnection(url,user,passerword);
         }catch(Exception e){
-            e.printStackTrace();
-            String info = "连接失败";
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, info, new ButtonType("确定", ButtonBar.ButtonData.YES));
-            alert.setHeaderText(null);
-            alert.setTitle("提示");
-            alert.show();
             return ct;
         }
     }
@@ -52,15 +44,18 @@ public class LoginController extends Application implements Initializable {
 
     @FXML
     void login(ActionEvent event) {
+            if(connect(ID.getText(),password.getText())!=null){
 
-        if(ID.getText().equals("test")&&password.getText().equals("12345")){
             ControlBookController test = new ControlBookController();
             try {
                 test.start(new Stage());
+                return ;
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }else{
+           }else {
+            ct = connect("test","12345");
+         }
             try {
                 Statement state = ct.createStatement();
                 ResultSet rs = state.executeQuery("select * from information where account= '"+ID.getText()+"'And password='"+password.getText()+"'");     //将sql语句传至数据库，返回的值为一个字符集用一个变量接收
@@ -87,9 +82,8 @@ public class LoginController extends Application implements Initializable {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
 
-        try(
+            try(
                 ObjectOutputStream out =new ObjectOutputStream(new FileOutputStream("src/resource/user.ser")))
         {
             //存储当前用户对象
@@ -97,7 +91,6 @@ public class LoginController extends Application implements Initializable {
         }catch(IOException e){
             e.printStackTrace();
         }
-
 
     }
 
@@ -129,6 +122,6 @@ public class LoginController extends Application implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ct=connect();
+
     }
 }
