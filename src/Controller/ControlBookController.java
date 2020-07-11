@@ -146,6 +146,7 @@ public class ControlBookController extends Application implements Initializable 
 
                 k.getChildren().add(test);
             }
+
             String contain =rs.getString(1);
             Button delete = new Button();
             delete.setPrefSize(100,50);
@@ -165,6 +166,7 @@ public class ControlBookController extends Application implements Initializable 
                 }
             });
             k.getChildren().add(delete);
+
             book.getChildren().add(k);
             flag+=1;
         }
@@ -174,19 +176,21 @@ public class ControlBookController extends Application implements Initializable 
 
     @FXML
     void create(ActionEvent event) {
-        String info = "该功能尚未实现";
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, info, new ButtonType("确定", ButtonBar.ButtonData.YES));
-        alert.setHeaderText(null);
-        alert.setTitle("提示");
-        alert.show();
+        RegisteredController test = new RegisteredController();
+        try {
+            test.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void returnbook(ActionEvent event) {
-        String info = "该功能尚未实现";
-        Alert alert = new Alert(Alert.AlertType.INFORMATION, info, new ButtonType("确定", ButtonBar.ButtonData.YES));
-        alert.setHeaderText(null);
-        alert.setTitle("提示");
-        alert.show();
+        ReturnController test = new ReturnController();
+        try {
+            test.start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

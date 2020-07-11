@@ -15,8 +15,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class LoginController extends Application implements Initializable {
@@ -54,6 +53,42 @@ public class LoginController extends Application implements Initializable {
     @FXML
     void login(ActionEvent event) {
 
+        if(ID.getText().equals("test")&&password.getText().equals("12345")){
+            ControlBookController test = new ControlBookController();
+            try {
+                test.start(new Stage());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else{
+            try {
+                Statement state = ct.createStatement();
+                ResultSet rs = state.executeQuery("select * from information where account= '"+ID.getText()+"'And password='"+password.getText()+"'");     //将sql语句传至数据库，返回的值为一个字符集用一个变量接收
+                if(rs.next()){
+                    userInfo.setAccount(rs.getString(1));
+                    userInfo.setPassword(rs.getString(2));
+                    userInfo.setBook_lend(rs.getString(3));
+
+                    UserController test = new UserController();
+                    try {
+                        test.start(new Stage());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }else{
+                    String info = "账号不存在";
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, info, new ButtonType("确定", ButtonBar.ButtonData.YES));
+                    alert.setHeaderText(null);
+                    alert.setTitle("提示");
+                    alert.show();
+                    return ;
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
         try(
                 ObjectOutputStream out =new ObjectOutputStream(new FileOutputStream("src/resource/user.ser")))
         {
@@ -62,14 +97,8 @@ public class LoginController extends Application implements Initializable {
         }catch(IOException e){
             e.printStackTrace();
         }
-        if(ID.getText().equals("test")&&password.getText().equals("12345")){
-            ChooseController test = new ChooseController();
-            try {
-                test.start(new Stage());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+
+
     }
 
     @FXML
@@ -100,6 +129,6 @@ public class LoginController extends Application implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        ct=connect();
     }
 }

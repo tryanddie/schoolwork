@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class UserInfo implements Serializable {
     String account;     //账号
     String password;    //密码
-    String book_lend;      //可借书数
+    String book_lend;      //所借书
 
     public String getAccount() {
         return account;

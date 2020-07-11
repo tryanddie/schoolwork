@@ -47,4 +47,12 @@ public class BookInfo {
     public void setSite(String site) {
         this.site = site;
     }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 }

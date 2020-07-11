@@ -5,7 +5,7 @@
   端口号及对应的数据库名 jdbc:sqlserver://127.0.0.1:1433;databaseName=library
 
 2.创建书的表
-    （1）
+
 GO
 
 CREATE TABLE [dbo].[Book](
@@ -22,3 +22,17 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
+3.创建用户的表
+
+GO
+
+CREATE TABLE [dbo].[information](
+	[account] [varchar](30) NOT NULL,
+	[password] [varchar](30) NULL,
+	[book] [varchar](30) NULL,
+PRIMARY KEY CLUSTERED
+(
+	[account] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
