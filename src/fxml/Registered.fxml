@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.RegisteredController">
+   <Label layoutX="106.0" layoutY="111.0" text="账号"/>
+   <Label layoutX="106.0" layoutY="180.0" text="密码"/>
+   <TextField fx:id="account" layoutX="164.0" layoutY="106.0"/>
+   <TextField fx:id="password" layoutX="164.0" layoutY="175.0"/>
+   <Button layoutX="224.0" layoutY="275.0" mnemonicParsing="false" onAction="#Create" text="确认创建"/>
+</AnchorPane>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.ReturnController">
+   <TextField fx:id="account" layoutX="189.0" layoutY="123.0"/>
+   <Text layoutX="116.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="账号"/>
+   <Button layoutX="451.0" layoutY="123.0" mnemonicParsing="false" onAction="#search" text="查询"/>
+   <Button layoutX="231.0" layoutY="279.0" mnemonicParsing="false" onAction="#return_book" text="确认还书"/>
+</AnchorPane>
